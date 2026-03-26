@@ -16,7 +16,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/GodSpoon/DocRipper/main/
 
 This will:
 1. Prompt you to confirm default settings (or enter advanced mode)
-2. Create a Debian 12 LXC with 2 cores / 1.5 GB RAM / 8 GB disk
+2. Create a Debian 12 LXC with 2 cores / 2 GB RAM / 4 GB disk
 3. Install Node.js 20, all Chromium system libraries, and DocRipper
 4. Download the Chromium binary via `playwright install`
 5. Set up a systemd service that starts on boot
@@ -30,8 +30,8 @@ This will:
 |---|---|
 | OS | Debian 12 (Bookworm) |
 | CPU | 2 cores |
-| RAM | 1536 MB |
-| Disk | 8 GB |
+| RAM | 2048 MB |
+| Disk | 4 GB |
 | Network | DHCP |
 | Type | Unprivileged (nesting=1) |
 | Port | 5000 |
