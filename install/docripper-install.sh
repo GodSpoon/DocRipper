@@ -81,8 +81,10 @@ REPO_URL="https://github.com/godspoon/docripper"
 INSTALL_DIR="/opt/docripper"
 
 # Check if a release exists, otherwise fall back to main branch
+# The || true inside $() prevents grep/sed exit-1 from killing the script
+# under set -eo pipefail when the repo has no releases yet.
 LATEST_TAG=$(curl -fsSL "https://api.github.com/repos/godspoon/docripper/releases/latest" \
-  2>/dev/null | grep '"tag_name"' | sed 's/.*"tag_name": *"\([^"]*\)".*/\1/')
+  2>/dev/null | grep '"tag_name"' | sed 's/.*"tag_name": *"\([^"]*\)".*/\1/' || true)
 
 if [[ -n "$LATEST_TAG" ]]; then
   $STD git clone --depth 1 --branch "$LATEST_TAG" "$REPO_URL" "$INSTALL_DIR"

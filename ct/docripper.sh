@@ -50,7 +50,7 @@ function update_script() {
   cd /opt/docripper
   CURRENT_TAG=$(cat .version 2>/dev/null || echo "unknown")
   LATEST_TAG=$(curl -fsSL "https://api.github.com/repos/godspoon/docripper/releases/latest" \
-    2>/dev/null | grep '"tag_name"' | sed 's/.*"tag_name": *"\([^"]*\)".*/\1/')
+    2>/dev/null | grep '"tag_name"' | sed 's/.*"tag_name": *"\([^"]*\)".*/\1/' || true)
 
   if [[ -z "$LATEST_TAG" ]]; then
     $STD git pull origin main
