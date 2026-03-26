@@ -2,10 +2,10 @@
 # Author: godspoon | https://github.com/godspoon
 # License: MIT
 # DocRipper: https://github.com/godspoon/docripper
-# Installer: https://github.com/godspoon/docripper-installer
+# Installer: https://github.com/GodSpoon/DocRipper
 #
 # Run from your Proxmox HOST shell (not inside a container):
-#   bash -c "$(curl -fsSL https://raw.githubusercontent.com/godspoon/docripper-installer/main/ct/docripper.sh)"
+#   bash -c "$(curl -fsSL https://raw.githubusercontent.com/GodSpoon/DocRipper/main/ct/docripper.sh)"
 
 # ── Shared UI helpers from community-scripts ──────────────────────────────────
 # We source build.func for UI/color/whiptail helpers ONLY.
@@ -24,7 +24,7 @@ var_os="${var_os:-debian}"
 var_version="${var_version:-13}"
 var_unprivileged="${var_unprivileged:-1}"
 
-INSTALL_SCRIPT_URL="https://raw.githubusercontent.com/godspoon/docripper-installer/main/install/docripper-install.sh"
+INSTALL_SCRIPT_URL="https://raw.githubusercontent.com/GodSpoon/DocRipper/main/install/docripper-install.sh"
 
 header_info "$APP"
 variables

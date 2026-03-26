@@ -11,7 +11,7 @@ DocRipper rips documentation from any site or GitHub repo into a single Markdown
 Run this **on your Proxmox host shell** (not inside a container):
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/godspoon/docripper-installer/main/ct/docripper.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/GodSpoon/DocRipper/main/ct/docripper.sh)"
 ```
 
 This will:
@@ -72,7 +72,7 @@ To pull the latest version, run the installer one-liner again **from inside the 
 pct enter 100
 
 # Then run the installer — it auto-detects and updates
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/godspoon/docripper-installer/main/ct/docripper.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/GodSpoon/DocRipper/main/ct/docripper.sh)"
 ```
 
 Or update manually inside the container:
@@ -104,7 +104,7 @@ docripper-start
 ## Repository Structure
 
 ```
-docripper-installer/
+DocRipper/
 ├── ct/
 │   └── docripper.sh          # Proxmox host script (create LXC + orchestrate)
 ├── install/
