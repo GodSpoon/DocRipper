@@ -99,10 +99,12 @@ function build_container() {
   [[ "${CT_TYPE}" == "1" ]] && FEATURES="keyctl=1,nesting=1"
   [[ "${ENABLE_FUSE:-no}" == "yes" ]] && FEATURES+=",fuse=1"
 
-  # Export env vars consumed by create_lxc.sh
+  # Export env vars consumed by create_lxc_container (embedded in build.func)
   export FUNCTIONS_FILE_PATH
   FUNCTIONS_FILE_PATH="$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/install.func)"
-  export DIAGNOSTICS RANDOM_UUID
+  export DIAGNOSTICS RANDOM_UUID EXECUTION_ID SESSION_ID BUILD_LOG
+  export TEMPLATE_STORAGE="${TEMPLATE_STORAGE:-${var_template_storage:-}}"
+  export CONTAINER_STORAGE="${CONTAINER_STORAGE:-${var_container_storage:-}}"
   export CACHER="${APT_CACHER:-}" CACHER_IP="${APT_CACHER_IP:-}"
   export tz="${timezone:-Etc/UTC}"
   export APPLICATION="$APP" app="$NSAPP"
@@ -110,6 +112,7 @@ function build_container() {
   export VERBOSE SSH_ROOT="${SSH:-no}" SSH_AUTHORIZED_KEY="${SSH_AUTHORIZED_KEY:-}"
   export CTID="$CT_ID" CTTYPE="$CT_TYPE"
   export ENABLE_FUSE="${ENABLE_FUSE:-no}" ENABLE_TUN="${ENABLE_TUN:-no}"
+  export ENABLE_GPU="${ENABLE_GPU:-no}" IPV6_METHOD="${IPV6_METHOD:-none}"
   export PCT_OSTYPE="$var_os" PCT_OSVERSION="$var_version"
   export PCT_DISK_SIZE="$DISK_SIZE"
   export PCT_OPTIONS="
@@ -125,8 +128,9 @@ function build_container() {
     ${PW:-}
   "
 
-  # Create the LXC
-  bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/create_lxc.sh)" "$?"
+  # Create the LXC — create_lxc.sh was removed upstream; use create_lxc_container()
+  # which is now embedded directly in build.func
+  create_lxc_container
 
   # Start it
   msg_info "Starting LXC Container"
